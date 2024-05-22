@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MoonSprings/Public/Characters/MoonSpringsCharacter.h"
+#include "MoonSprings/Public/Characters/MSCharacter.h"
 #include "ParentClient.generated.h"
 
 UCLASS()
-class MOONSPRINGS_API AParentClient : public AMoonSpringsCharacter
+class MOONSPRINGS_API AParentClient : public AMSCharacter
 {
 	GENERATED_BODY()
 

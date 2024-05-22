@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MoonSprings/Public/MoonSpringsGameMode.h"
-#include "MoonSprings/Public/Characters/MoonSpringsCharacter.h"
+#include "MoonSprings/Public/Characters/MSCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 AMoonSpringsGameMode::AMoonSpringsGameMode()
