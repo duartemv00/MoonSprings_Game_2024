@@ -20,6 +20,8 @@ AMomo::AMomo()
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
+	GetCharacterMovement()->MaxStepHeight = 45.f;
+	GetCharacterMovement()->SetWalkableFloorAngle(50);
 }
 
 void AMomo::Move(const FInputActionValue& Value)
@@ -82,7 +84,7 @@ void AMomo::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMomo::Move);
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMomo::Look);
+		// EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMomo::Look);
 	}
 	else
 	{
