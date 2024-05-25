@@ -6,6 +6,14 @@
 #include "MSCharacter.h"
 #include "Momo.generated.h"
 
+UENUM(BlueprintType)
+enum class EMomoState : uint8
+{
+	Default,
+	HasClient,
+	HasItem
+};
+
 UCLASS()
 class MOONSPRINGS_API AMomo : public AMSCharacter
 {
@@ -19,17 +27,22 @@ class MOONSPRINGS_API AMomo : public AMSCharacter
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
-	/** Look Input Action */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputAction* LookAction;
+	
+	UPROPERTY(EditAnywhere, Category = Client, meta = (AllowPrivate))
+	EMomoState MomoState;
+	
 public:
 	AMomo();
 
+	UFUNCTION(BlueprintCallable)
+	void SetMomoState(EMomoState NewState) { MomoState = NewState; }
+
+	UFUNCTION(BlueprintCallable)
+	EMomoState GetMomoState() const { return MomoState; }
+
 protected:
 	/** Called for movement input */
-	void Move(const FInputActionValue& Value);
-	/** Called for looking input */
-	void Look(const FInputActionValue& Value);
+	void Move(const FInputActionValue& InputValue);
 	// APawn interface
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

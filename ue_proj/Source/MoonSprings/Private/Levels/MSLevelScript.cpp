@@ -16,5 +16,8 @@ void AMSLevelScript::SetCameraView()
 {
 	AActor* aux1 = UGameplayStatics::GetActorOfClass(GetWorld(), ACameraActor::StaticClass());
 	APlayerController* aux2 = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	aux2->SetViewTargetWithBlend(aux1, 0, EViewTargetBlendFunction::VTBlend_Cubic);
+	if(IsValid(aux1) && IsValid(aux2))
+	{
+		aux2->SetViewTargetWithBlend(aux1, 0, EViewTargetBlendFunction::VTBlend_Cubic);
+	}
 }
