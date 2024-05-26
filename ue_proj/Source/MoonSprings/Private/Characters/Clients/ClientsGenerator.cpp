@@ -4,12 +4,16 @@
 #include "Characters/Clients/ClientsGenerator.h"
 
 #include "Characters/Clients/ParentClient.h"
+#include "Components/ArrowComponent.h"
 
 AClientsGenerator::AClientsGenerator()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+	SpawnPoint = CreateDefaultSubobject<UArrowComponent>(TEXT("SpawnPoint"));
+	SpawnPoint->SetupAttachment(MeshComponent);
+	SpawnPoint->SetRelativeLocation(FVector(0,0,40.f));
 
 }
 
@@ -26,7 +30,7 @@ void AClientsGenerator::GenerateNewClient()
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = GetInstigator();
 
-		const FVector Location = GetActorLocation() + LocationOffset;
+		const FVector Location = SpawnPoint->GetComponentLocation();
 		const FRotator Rotation = SpawnRotation;
 
 		const int32 Index = FMath::RandRange(0, ClientsTemplates.Num() - 1); // Create random index
@@ -35,6 +39,7 @@ void AClientsGenerator::GenerateNewClient()
 		if(UPDAClient* NewClientInformation = ClientsTemplates[Index].ClientClass)
 		{
 			AParentClient* NewClientRef = World->SpawnActor<AParentClient>(Location, Rotation, SpawnParams);
+			//Set the values for the just created client
 			NewClientRef->SetValues(NewClientInformation->GetSkeletalMesh(),
 				NewClientInformation->GetAnimBlueprint(),
 				NewClientInformation->GetPatience(),

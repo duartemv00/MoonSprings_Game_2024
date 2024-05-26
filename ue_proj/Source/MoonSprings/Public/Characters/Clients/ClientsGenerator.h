@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PDAClient.h"
+#include "Components/ArrowComponent.h"
 #include "GameFramework/Actor.h"
 #include "ClientsGenerator.generated.h"
 
@@ -29,6 +30,9 @@ public:
 private:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent *MeshComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UArrowComponent *SpawnPoint;
 	
 	UPROPERTY(EditAnywhere, Category = "Configuration | Default")
 	float MinTimeBetweenClients;

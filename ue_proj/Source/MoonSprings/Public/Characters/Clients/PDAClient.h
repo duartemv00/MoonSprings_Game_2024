@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "MSTypes.h"
+
 #include "PDAClient.generated.h"
+
 
 /**
  * 
@@ -18,6 +21,9 @@ class MOONSPRINGS_API UPDAClient : public UPrimaryDataAsset
 	USkeletalMesh* MeshComponent;
 	UPROPERTY(EditAnywhere, Category = "Client visuals")
 	UAnimBlueprint* AnimBlueprint;
+	UPROPERTY(EditAnywhere, Category = "Client visuals")
+	UMaterial* Skin;
+	
 	// Stats
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"),
 		meta = (ToolTip = "Time before the client leaves if unattended"),
@@ -31,6 +37,9 @@ class MOONSPRINGS_API UPDAClient : public UPrimaryDataAsset
 		meta = (ToolTip = "Maximum time the client will wait before asking for something"),
 		Category = "Client stats | Asking Time")
 	float MaxAskingTime;
+
+	UPROPERTY(EditAnywhere, Category = "Client stats | Requests")
+	TArray<EProductType> WantedFoodDrink;
 
 public:
 	//***** PUBLIC FUNCTIONS *****

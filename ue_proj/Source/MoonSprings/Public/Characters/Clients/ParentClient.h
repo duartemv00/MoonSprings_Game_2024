@@ -10,12 +10,7 @@ UCLASS()
 class MOONSPRINGS_API AParentClient : public AMSCharacter
 {
 	GENERATED_BODY()
-
-	// Client Visuals
-	UPROPERTY(EditAnywhere)
-	USkeletalMeshComponent* ClientMesh;
-	UPROPERTY(EditAnywhere)
-	UAnimBlueprint* AnimBlueprint;
+	
 	// Client Stats
 	UPROPERTY(EditAnywhere)
 	float Patience;
@@ -32,5 +27,5 @@ protected:
 
 public:
 	// Set the values of the client
-	void SetValues(USkeletalMesh* Mesh, UAnimBlueprint* AnimBlueprint, float Patience, float MinAskingTime, float MaxAskingTime);
+	void SetValues(USkeletalMesh* _Mesh, UAnimBlueprint* _AnimBlueprint, float _Patience, float _MinAskingTime, float _MaxAskingTime);
 };
