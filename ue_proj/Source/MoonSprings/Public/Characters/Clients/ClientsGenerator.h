@@ -24,8 +24,13 @@ class MOONSPRINGS_API AClientsGenerator : public AActor
 {
 	GENERATED_BODY()
 
+	FTimerHandle ClientGenerationTimerHandle;
+
 public:
 	AClientsGenerator();
+	
+	UPROPERTY()
+	class AParentClient* CurrentClient;
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Components")
@@ -53,7 +58,7 @@ private:
 	//Start the timer to generate a new client
 	UFUNCTION() void StartClientGeneration();
 	// Generate a new client
-	UFUNCTION() void GenerateNewClient();
+	UFUNCTION() void GenerateClient();
 
 protected:
 	virtual void BeginPlay() override;

@@ -15,6 +15,8 @@ class MOONSPRINGS_API ACafeteria : public AActor
 {
 	GENERATED_BODY()
 
+	FTimerHandle ProductGenerationTimer;
+
 	UPROPERTY(EditDefaultsOnly)
 	UStaticMeshComponent* MeshComponent;
 
@@ -27,6 +29,9 @@ class MOONSPRINGS_API ACafeteria : public AActor
 
 public:
 	ACafeteria();
+
+	UPROPERTY(EditAnywhere)
+	float ProductionRate = 5.0f;
 
 	UFUNCTION()
 	void StartProductGeneration();

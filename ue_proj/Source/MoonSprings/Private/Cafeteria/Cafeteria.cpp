@@ -16,6 +16,8 @@ ACafeteria::ACafeteria()
 
 void ACafeteria::StartProductGeneration()
 {
+	GetWorldTimerManager().SetTimer(ProductGenerationTimer, this,
+		&ACafeteria::GenerateProduct, ProductionRate, true, 0.0f);
 }
 
 void ACafeteria::GenerateProduct()
@@ -36,6 +38,7 @@ void ACafeteria::GenerateProduct()
 			AParentProduct* NewProductRef = World->SpawnActor<AParentProduct>(Location, Rotation, ProductSpawnParams);
 			//Set the values for the just created product
 			NewProductRef->SetValues(NewProductInformation->GetStaticMesh());
+			NewProductRef->StartMovementAlongSpline(SplineComponent);
 		}
 	}
 }
@@ -44,7 +47,7 @@ void ACafeteria::GenerateProduct()
 void ACafeteria::BeginPlay()
 {
 	Super::BeginPlay();
-	GenerateProduct();
+	StartProductGeneration();
 	
 }
 

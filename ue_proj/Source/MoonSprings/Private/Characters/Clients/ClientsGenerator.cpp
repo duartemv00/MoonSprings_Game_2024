@@ -19,10 +19,18 @@ AClientsGenerator::AClientsGenerator()
 
 void AClientsGenerator::StartClientGeneration()
 {
-	
+	//AParentClient* aux = CurrentClient;
+	//CurrentClient = nullptr;
+	//aux->Leave();
+	if(CurrentClient)
+	{
+		CurrentClient->Leave();
+		CurrentClient = nullptr;
+	}
+	GenerateClient();
 }
 
-void AClientsGenerator::GenerateNewClient()
+void AClientsGenerator::GenerateClient()
 {
 	if (UWorld* World = GetWorld())
 	{
@@ -38,21 +46,24 @@ void AClientsGenerator::GenerateNewClient()
 
 		if(UPDAClient* NewClientInformation = ClientsTemplates[Index].ClientClass)
 		{
-			AParentClient* NewClientRef = World->SpawnActor<AParentClient>(Location, Rotation, SpawnParams);
+			CurrentClient = World->SpawnActor<AParentClient>(Location, Rotation, SpawnParams);
 			//Set the values for the just created client
-			NewClientRef->SetValues(NewClientInformation->GetSkeletalMesh(),
+			CurrentClient->SetValues(NewClientInformation->GetSkeletalMesh(),
 				NewClientInformation->GetAnimBlueprint(),
 				NewClientInformation->GetPatience(),
 				NewClientInformation->GetMinAskingTime(),
 				NewClientInformation->GetMaxAskingTime());
 		}
 	}
+	GetWorldTimerManager().SetTimer(ClientGenerationTimerHandle, this,
+		&AClientsGenerator::StartClientGeneration,
+		FMath::RandRange(MinTimeBetweenClients, MaxTimeBetweenClients), false);
 }
 
 // Called when the game starts or when spawned
 void AClientsGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	GenerateNewClient();
+	GenerateClient();
 }
 

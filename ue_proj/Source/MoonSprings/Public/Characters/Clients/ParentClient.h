@@ -27,5 +27,10 @@ protected:
 
 public:
 	// Set the values of the client
+	UFUNCTION()
 	void SetValues(USkeletalMesh* _Mesh, UAnimBlueprint* _AnimBlueprint, float _Patience, float _MinAskingTime, float _MaxAskingTime);
+
+	UFUNCTION()
+	void Leave();
+
 };

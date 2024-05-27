@@ -48,3 +48,8 @@ void AParentClient::SetValues(USkeletalMesh* _Mesh,
 	MaxAskingTime = _MaxAskingTime;
 }
 
+void AParentClient::Leave()
+{
+	this->SetLifeSpan(0.01f);
+}
+
