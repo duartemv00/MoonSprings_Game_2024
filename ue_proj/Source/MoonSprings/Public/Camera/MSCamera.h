@@ -19,7 +19,29 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY()
+	FTimerHandle TimerHandle_FollowCharacter;
+
+	UPROPERTY()
+	AActor* CharacterRef;
+
+	UPROPERTY(EditInstanceOnly, meta = (MakeEditWidget = true))
+	float CamTopLimit;
+	UPROPERTY(EditInstanceOnly, meta = (MakeEditWidget = true))
+	float CamDownLimit;
+	UPROPERTY(EditInstanceOnly, meta = (MakeEditWidget = true))
+	float CamLeftLimit;
+	UPROPERTY(EditInstanceOnly, meta = (MakeEditWidget = true))
+	float CamRightLimit;
+	UPROPERTY(EditDefaultsOnly)
+	float CamOffsetX;
+
+	UFUNCTION()
+	void GetPlayerReference();
+	
+	UFUNCTION()
+	void FollowCharacter();
+	UFUNCTION()
+	void Timer_FollowCharacter();
+
 };
