@@ -1,4 +1,5 @@
 ![Imagen de título del juego MoonSprings](/resources/MoonSpringsTitle.png)
+
 MoonSprings is an arcade and time management game about how good you can operate an alien hotspring.
 
 # The story behind MoonSprings
