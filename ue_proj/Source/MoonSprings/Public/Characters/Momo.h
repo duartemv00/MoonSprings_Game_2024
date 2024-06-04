@@ -27,6 +27,9 @@ class MOONSPRINGS_API AMomo : public AMSCharacter
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
+	/** Interact Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
 	
 	UPROPERTY(EditAnywhere, Category = Client, meta = (AllowPrivate))
 	EMomoState MomoState;
@@ -34,14 +37,23 @@ class MOONSPRINGS_API AMomo : public AMSCharacter
 public:
 	AMomo();
 
+	// Setters
 	UFUNCTION(BlueprintCallable)
 	void SetMomoState(EMomoState NewState) { MomoState = NewState; }
-
+	// Getters
 	UFUNCTION(BlueprintCallable)
 	EMomoState GetMomoState() const { return MomoState; }
 
+	UFUNCTION()
+	void SearchForInteractable();
+
+	UFUNCTION()
+	void Sprint();
+	
+
 protected:
 	/** Called for movement input */
+	UFUNCTION()
 	void Move(const FInputActionValue& InputValue);
 	// APawn interface
 	// Called to bind functionality to input

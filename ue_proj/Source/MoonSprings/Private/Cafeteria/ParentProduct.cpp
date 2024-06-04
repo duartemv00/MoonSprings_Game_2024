@@ -10,6 +10,7 @@ AParentProduct::AParentProduct()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("`MeshComponent");
+	MeshComponent -> SetupAttachment(RootComponent);
 }
 
 void AParentProduct::SetValues(UStaticMesh* _Mesh)

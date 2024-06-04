@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "MoonSprings/Public/Characters/MSCharacter.h"
+#include "InteractSystem/IMSInteractInterface.h"
 #include "ParentClient.generated.h"
 
 UCLASS()
-class MOONSPRINGS_API AParentClient : public AMSCharacter
+class MOONSPRINGS_API AParentClient : public AMSCharacter, public IIMSInteractInterface
 {
 	GENERATED_BODY()
 	
@@ -32,5 +33,8 @@ public:
 
 	UFUNCTION()
 	void Leave();
+
+	UFUNCTION()
+	void Interact() override;
 
 };

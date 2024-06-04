@@ -53,3 +53,8 @@ void AParentClient::Leave()
 	this->SetLifeSpan(0.01f);
 }
 
+void AParentClient::Interact()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Momo is interacting with a client"));
+}
+
